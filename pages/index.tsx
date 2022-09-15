@@ -37,8 +37,9 @@ const Home: NextPage = () => {
   }, []);
 
   const btnCreateNft = async () => {
-    // Create a collection
-    // const txnHash1 = await window.martian.createCollection("ColName123", "CollectionDescription", "https://aptos.dev")
+
+
+    //const txnHash = await window.martian.createCollection("NewCollectionTEJ123123123", "NewCollectionTEJ", "https://gateway.pinata.cloud/ipfs/QmSiT41Vc5AfCT7ShT1VYrV4N8raM96gw1VUXKpGy5sezK");
     console.log(nftName, nftDescription, nftImgUrl, imageError)
     if(nftName == '') {
       notify("error", "Input nft name!")
@@ -52,8 +53,8 @@ const Home: NextPage = () => {
       notify("error", "Input valid image url!")
       return
     }
-    // Create Token
-    const txnHash = await window.martian.createToken("ColName123", nftName, nftDescription, 1, nftImgUrl, 1)
+ 
+    const txnHash = await window.martian.createToken("ColName123", nftName, nftDescription, 1, "https://gateway.pinata.cloud/ipfs/QmSiT41Vc5AfCT7ShT1VYrV4N8raM96gw1VUXKpGy5sezK", 1)
   }
 
   return (
@@ -69,7 +70,7 @@ const Home: NextPage = () => {
             !isConnected ? (
               <button className={`${styles.btn} !px-[30px]`} onClick={btnConnect}>
                 {/* onClick={() => setConnect(true)}> */}
-                Connect <span className={styles.textGreen}>Aptos</span> wallet
+                Connect Wallet<span className={styles.textGreen}></span> 
               </button>
             ) : (
               <>
@@ -98,10 +99,6 @@ const Home: NextPage = () => {
                   </div>
 
                 </div>
-                <p className={`${styles.absolute_div} !top-[30px] !right-[240px] !w-[250px]`} onClick={() => setViewType(viewType=='simple'?'advance':'simple')}>Switch to Advanced view</p>
-                <button className={`${styles.absolute_div} ${styles.btn} ${styles.textGreen} !top-[30px] !right-[515px] !w-[250px]`}>
-                  {address.substring(0, 6) + "..." + address.substring(address.length - 4)}
-                </button>
               </>
             )
           )
@@ -111,12 +108,12 @@ const Home: NextPage = () => {
       <Link href={'/'}>
         <a className={`${styles.absolute_div} left-[70px]`}>
           <img src="/image/martian.png" alt="Logo" width={23} height={23} />
-          <p>Martian</p>
+          <p>Aptos Blockchain NFT Minting</p>
         </a>
       </Link>
       <Link href={'/'}>
         <a className={`${styles.absolute_div} right-[70px]`}>
-          <p>Tutorial</p>
+        {address.substring(0, 6) + "..." + address.substring(address.length - 4)}
         </a>
       </Link>
     </div>
