@@ -13,8 +13,17 @@ const Home: NextPage = () => {
   const [address, setAddress] = useState('')
 
   const [nftImgUrl, setNftImgUrl] = useState("")
+  const [nftID, setnftID] = useState(0)
   const [nftName, setNftName] = useState("")
   const [nftDescription, setNftDescription] = useState("")
+
+  
+
+  useEffect(() => {
+    let id = Math.floor(Math.random() * (1999 - 0 + 1)) + 0;
+    setnftID(id)
+    setNftImgUrl("https://bafybeibrteurbwo76af6c4l4jc3k5dvjd7f73l62peonbsni4qibkk27hq.ipfs.dweb.link/"+id+".png")
+  }, [])
 
   const btnConnect = async () => {
     await window.martian.connect()
@@ -26,6 +35,7 @@ const Home: NextPage = () => {
     }
   }
 
+  
   useEffect(()=>{
     if ("martian" in window) {
       setMartian(true)
@@ -37,24 +47,7 @@ const Home: NextPage = () => {
   }, []);
 
   const btnCreateNft = async () => {
-
-
-    //const txnHash = await window.martian.createCollection("NewCollectionTEJ123123123", "NewCollectionTEJ", "https://gateway.pinata.cloud/ipfs/QmSiT41Vc5AfCT7ShT1VYrV4N8raM96gw1VUXKpGy5sezK");
-    console.log(nftName, nftDescription, nftImgUrl, imageError)
-    if(nftName == '') {
-      notify("error", "Input nft name!")
-      return
-    }
-    if(nftDescription == '') {
-      notify("error", "Input nft description!")
-      return
-    }
-    if(nftImgUrl == '' || imageError) {
-      notify("error", "Input valid image url!")
-      return
-    }
- 
-    const txnHash = await window.martian.createToken("ColName123", nftName, nftDescription, 1, "https://gateway.pinata.cloud/ipfs/QmSiT41Vc5AfCT7ShT1VYrV4N8raM96gw1VUXKpGy5sezK", 1)
+    const txnHash = await window.martian.createToken("TejNFT", "#"+nftID,"Tej NFT on Aptos blockchain net", 1, nftImgUrl, 1)
   }
 
   return (
@@ -86,16 +79,9 @@ const Home: NextPage = () => {
                     </div>
                   }
                   <div className='flex flex-col justify-center items-center'>
-                    <h2 className='mb-[10px] font-semibold'>Create NFT</h2>
-                    <input className={`${styles.input} s-step-1`} placeholder="NFT name" type="text" value={nftName} onChange={(e)=>setNftName(e.target.value)}/>
-                    <input className={`${styles.input} s-step-2`} placeholder="NFT Description" type="text" value={nftDescription} onChange={(e)=>setNftDescription(e.target.value)}/>
-                    {viewType != 'simple' && <input className={`${styles.input} s-step-6`} placeholder="NFT collection name" type="text"/>}
-                    <input className={`${styles.input} s-step-3`} placeholder="NFT Url" type="text" onChange={(e) => {setNftImgUrl(e.target.value); setImageError(false)}}/>
-                    <button className={`${styles.filledBtn} py-[10px] px-[25px] bg-[rgb(21, 215, 145)] text-[#000] font-semibold`} onClick={btnCreateNft}>Create NFT</button>
-                  </div>
-                  <div className='flex flex-col justify-center items-center'>
                     <p className='mb-[10px]'>NFT preview</p>
                     <img src={imageError?'/image/initimg.svg':nftImgUrl} alt="nft-image" onError={(e)=>{setImageError(true)}} data-src={nftImgUrl} className='h-[200px] w-[200px] border-solid border-[1px] border-[rgb(78, 78, 78)] bg-[black] visible'/>
+                    <button className={`${styles.filledBtn} py-[10px] px-[25px] bg-[rgb(21, 215, 145)] text-[#000] font-semibold`} onClick={btnCreateNft}>Mint</button>
                   </div>
 
                 </div>
