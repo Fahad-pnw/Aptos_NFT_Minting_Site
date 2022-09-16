@@ -79,7 +79,7 @@ const Home: NextPage = () => {
                     </div>
                   }
                   <div className='flex flex-col justify-center items-center'>
-                    <p className='mb-[10px]'>NFT preview</p>
+                    <p className='mb-[10px]'>#{nftID}</p>
                     <img src={imageError?'/image/initimg.svg':nftImgUrl} alt="nft-image" onError={(e)=>{setImageError(true)}} data-src={nftImgUrl} className='h-[200px] w-[200px] border-solid border-[1px] border-[rgb(78, 78, 78)] bg-[black] visible'/>
                     <button className={`${styles.filledBtn} py-[10px] px-[25px] bg-[rgb(21, 215, 145)] text-[#000] font-semibold`} onClick={btnCreateNft}>Mint</button>
                   </div>
