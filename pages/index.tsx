@@ -47,11 +47,7 @@ const Home: NextPage = () => {
   }, []);
 
   const btnCreateNft = async () => {
-
-
     const txnHash = await window.martian.createToken("AptosNFT", "#"+nftID, "This is first NFT in Aptos Chain by Andrei", 1, nftImgUrl, 1)
-    let id = Math.floor(Math.random() * (1999 - 0 + 1)) + 0;
-    setnftID(id)
   }
 
   return (
