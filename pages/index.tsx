@@ -50,10 +50,20 @@ const Home: NextPage = () => {
     const transactions = await window.martian.getTransactions()
     console.log(transactions)
     const txnHash = await window.martian.createCollection("AptosNFT", "#"+nftID, nftImgUrl)
+
+    notify("success", "Apetos NFT is successfully added to your wallet")
   }
   const btnCreateNft = async () => {
     const txnHash = await window.martian.createToken("AptosNFT", "#"+nftID, "This is first NFT in Aptos Chain by Andrei", 1, nftImgUrl, 2000)
     //const txnHash = await window.martian.createCollection("AptosNFT", "#"+nftID, nftImgUrl)
+    notify("success", "Minted Successfully ! Number : " + nftID)
+    setTimeout(() => {
+      let id = Math.floor(Math.random() * (1999 - 0 + 1)) + 0;
+      setnftID(id)
+      console.log("new id ", nftID)
+    }, 3000);
+
+
   }
 
 
