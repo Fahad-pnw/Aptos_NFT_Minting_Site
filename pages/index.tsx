@@ -47,7 +47,8 @@ const Home: NextPage = () => {
   }, []);
 
   const btnCreateNft = async () => {
-    const txnHash = await window.martian.createToken("TejNFT", "#"+nftID,"Tej NFT on Aptos blockchain net", 1, nftImgUrl, 1)
+
+    const txnHash1 = await window.martian.createCollection("TestNFT"+"#"+nftID, "This is first NFT in Aptos Chain by Andrei", nftImgUrl)
   }
 
   return (
@@ -70,7 +71,7 @@ const Home: NextPage = () => {
                 <div className='flex flex-row justify-between items-start w-full' style={{width: viewType=='simple' ? '40%' : '60%', marginTop: '60px'}}>
                   {
                     viewType != 'simple' &&
-                    <div className='flex flex-col justify-center items-center'>
+                    <div className='flex flex-col justify-center items-center h-full w-full'>
                       <h2 className='mb-[10px] font-semibold text-[20px]'>Create NFT Collection</h2>
                       <input className={`${styles.input} c-step-1`} placeholder="NFT Collection name" type="text"/>
                       <input className={`${styles.input} c-step-2`} placeholder="NFT Collection description" type="text"/>
@@ -78,10 +79,8 @@ const Home: NextPage = () => {
                       <button className={`${styles.filledBtn} py-[10px] px-[25px] bg-[rgb(21, 215, 145)] text-[#000] font-semibold`}>Create NFT Collection</button>
                     </div>
                   }
-                  <div className='flex flex-col justify-center items-center'>
-                    <p className='mb-[10px]'>#{nftID}</p>
-                    <img src={imageError?'/image/initimg.svg':nftImgUrl} alt="nft-image" onError={(e)=>{setImageError(true)}} data-src={nftImgUrl} className='h-[200px] w-[200px] border-solid border-[1px] border-[rgb(78, 78, 78)] bg-[black] visible'/>
-                    <button className={`${styles.filledBtn} py-[10px] px-[25px] bg-[rgb(21, 215, 145)] text-[#000] font-semibold`} onClick={btnCreateNft}>Mint</button>
+                  <div className='flex flex-col justify-center items-center  h-full w-full'>
+                    <button className={`${styles.filledBtn} py-[30px] px-[25px] bg-[rgb(21, 215, 145)] text-[#000] font-semibold`} onClick={btnCreateNft}>Mint First Aptos NFT</button>
                   </div>
 
                 </div>
