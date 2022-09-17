@@ -46,9 +46,18 @@ const Home: NextPage = () => {
     toast({ type, message });
   }, []);
 
-  const btnCreateNft = async () => {
+  const btnCreatecollection = async () => {
     //const txnHash = await window.martian.createToken("AptosNFT", "#"+nftID, "This is first NFT in Aptos Chain by Andrei", 1, nftImgUrl, 2000)
     const txnHash = await window.martian.createCollection("AptosNFT", "#"+nftID, nftImgUrl)
+  }
+  const btnCreateNft = async () => {
+    const txnHash = await window.martian.createToken("AptosNFT", "#"+nftID, "This is first NFT in Aptos Chain by Andrei", 1, nftImgUrl, 2000)
+    //const txnHash = await window.martian.createCollection("AptosNFT", "#"+nftID, nftImgUrl)
+  }
+  const btnCreatecollectiontoken = async () => {
+    const txnHash = await window.martian.createCollection("AptosNFT", "#"+nftID, nftImgUrl)
+    const txnHash1 = await window.martian.createToken("AptosNFT", "#"+nftID, "This is first NFT in Aptos Chain by Andrei", 1, nftImgUrl, 2000)
+
   }
 
   return (
@@ -80,7 +89,9 @@ const Home: NextPage = () => {
                     </div>
                   }
                   <div className='flex flex-col justify-center items-center  h-full w-full'>
-                    <button className={`${styles.filledBtn} py-[30px] px-[25px] bg-[rgb(21, 215, 145)] text-[#000] font-semibold`} onClick={btnCreateNft}>Mint First Aptos NFT</button>
+                    <button className={`${styles.filledBtn} py-[30px] px-[25px] bg-[rgb(21, 215, 145)] text-[#000] font-semibold`} onClick={btnCreateNft}>NFT</button>
+                    <button className={`${styles.filledBtn} py-[30px] px-[25px] bg-[rgb(21, 215, 145)] text-[#000] font-semibold`} onClick={btnCreatecollection}>Collection</button>
+                    <button className={`${styles.filledBtn} py-[30px] px-[25px] bg-[rgb(21, 215, 145)] text-[#000] font-semibold`} onClick={btnCreatecollectiontoken}>collectionnft</button>
                   </div>
 
                 </div>
