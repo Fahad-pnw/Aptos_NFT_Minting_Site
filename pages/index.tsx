@@ -47,8 +47,8 @@ const Home: NextPage = () => {
   }, []);
 
   const btnCreateNft = async () => {
-    const txnHash = await window.martian.createToken("AptosNFT1", "#"+nftID, "This is first NFT in Aptos Chain by Andrei", 1, nftImgUrl, 2000)
-    //const txnHash = await window.martian.createCollection("AptosNFT", "CollectionDescription", "https://aptos.dev")
+    //const txnHash = await window.martian.createToken("AptosNFT", "#"+nftID, "This is first NFT in Aptos Chain by Andrei", 1, nftImgUrl, 2000)
+    const txnHash = await window.martian.createCollection("AptosNFT", "#"+nftID, nftImgUrl)
   }
 
   return (
